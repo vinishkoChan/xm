@@ -1,0 +1,12 @@
+@if (picture()) {
+  <div class="photo__container">
+    <app-picture-preview [picture]="picture()!" />
+    <button
+      matButton="filled"
+      class="picture-preview__button"
+      (click)="removeFromFavorites(picture()!)"
+    >
+      Remove from favorites
+    </button>
+  </div>
+}

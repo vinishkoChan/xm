@@ -1,0 +1,31 @@
+.picture-collection__container {
+  height: 100%;
+  overflow: auto;
+}
+
+.picture-collection__grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 200px);
+  justify-content: space-evenly;
+  gap: 1.5rem;
+}
+
+.picture-collection__placeholder-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.picture-collection__placeholder-text {
+  font-size: 3rem;
+  line-height: 3rem;
+  color: var(--mat-sys-secondary-container);
+}
+
+.picture-collection__loader {
+  margin: 1rem auto;
+}

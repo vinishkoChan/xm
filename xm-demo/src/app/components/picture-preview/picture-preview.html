@@ -1,0 +1,6 @@
+<div class="picture-preview__container">
+  <img [src]="picture().blob | blobToUrl" />
+  @if (picture().isFavorite) {
+    <mat-icon class="picture-preview__favorite-icon">star</mat-icon>
+  }
+</div>

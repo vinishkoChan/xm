@@ -1,0 +1,10 @@
+.picture-preview__container {
+  position: relative;
+}
+
+.picture-preview__favorite-icon {
+  font-variation-settings: 'FILL' 1;
+  color: var(--mat-sys-error);
+  position: absolute;
+  left: 0;
+}

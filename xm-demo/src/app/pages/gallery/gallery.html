@@ -1,0 +1,6 @@
+<app-picture-collection
+  [pictures]="pictures()"
+  [loading]="true"
+  (pictureClick)="handlePictureClick($event)"
+  (bottomReached)="loadMorePictures()"
+/>
