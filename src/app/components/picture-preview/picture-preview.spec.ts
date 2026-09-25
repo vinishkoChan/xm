@@ -25,6 +25,10 @@ describe('PicturePreview', () => {
     isFavorite: false,
   };
 
+  function getFavoriteIcon(): HTMLElement | null {
+    return fixture.nativeElement.querySelector('.picture-preview__favorite-icon');
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PicturePreview],
@@ -67,5 +71,34 @@ describe('PicturePreview', () => {
     fixture.detectChanges();
 
     expect(component.picture().isFavorite).toBe(true);
+    expect(getFavoriteIcon()).not.toBeNull();
+  });
+
+  it('should render the image with the url produced by the blobToUrl pipe', () => {
+    fixture.componentRef.setInput('picture', mockPicture);
+    fixture.detectChanges();
+
+    const img: HTMLImageElement = fixture.nativeElement.querySelector('img');
+
+    expect(img).not.toBeNull();
+    expect(img.getAttribute('src')).toBe('mocked-url-string');
+  });
+
+  it('should not render the favorite icon for a non-favorite picture', () => {
+    fixture.componentRef.setInput('picture', mockPicture);
+    fixture.detectChanges();
+
+    expect(getFavoriteIcon()).toBeNull();
+  });
+
+  it('should render the star icon for a favorite picture', () => {
+    fixture.componentRef.setInput('picture', { ...mockPicture, isFavorite: true });
+    fixture.detectChanges();
+
+    expect(getFavoriteIcon()?.textContent?.trim()).toBe('star');
+  });
+
+  it('should throw when the required picture input is not set', () => {
+    expect(() => fixture.detectChanges()).toThrow(/NG0950/);
   });
 });

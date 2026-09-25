@@ -19,7 +19,7 @@ export class PictureCollection {
   private readonly trigger = viewChild<ElementRef<HTMLDivElement>>('loadTrigger');
 
   constructor() {
-    effect(() => {
+    effect((onCleanup) => {
       if (!this.trigger()) {
         return;
       }
@@ -30,14 +30,12 @@ export class PictureCollection {
             this.bottomReached.emit();
           }
         },
-        {
-          rootMargin: '10px',
-        },
+        { rootMargin: '10px' },
       );
 
       observer.observe(this.trigger()!.nativeElement);
 
-      return () => observer.disconnect();
+      onCleanup(() => observer.disconnect());
     });
   }
 }
